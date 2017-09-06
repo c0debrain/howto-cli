@@ -1,8 +1,16 @@
 {
   "name": "howto-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The terminal inline help tool you've been waiting so long",
-  "keywords": ["terminal", "help", "manual", "documentation", "learn", "console", "cli"],
+  "keywords": [
+    "terminal",
+    "help",
+    "manual",
+    "documentation",
+    "learn",
+    "console",
+    "cli"
+  ],
   "bin": {
     "howto": "./index.js"
   },
@@ -13,9 +21,11 @@
     "url": "https://github.com/ziolko/howto-cli"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "chalk": "^2.1.0",
     "compromise": "^10.7.2",
-    "pegjs": "^0.10.0"
+    "pegjs": "^0.10.0",
+    "semver": "^5.4.1"
   },
   "devDependencies": {
     "standard": "^10.0.3"
