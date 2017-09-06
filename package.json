@@ -1,0 +1,23 @@
+{
+  "name": "howto-cli",
+  "version": "0.1.0",
+  "description": "The terminal inline help tool you've been waiting so long",
+  "keywords": ["terminal", "help", "manual", "documentation", "learn", "console", "cli"],
+  "bin": {
+    "howto": "./index.js"
+  },
+  "author": "Mateusz Zieliński <mateusz.mzielinski@gmail.com> (https://github.com/ziolko)",
+  "license": "MPL-2.0",
+  "homepage": "https://github.com/ziolko/howto-cli",
+  "bugs": {
+    "url": "https://github.com/ziolko/howto-cli"
+  },
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "compromise": "^10.7.2",
+    "pegjs": "^0.10.0"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3"
+  }
+}

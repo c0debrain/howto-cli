@@ -1,0 +1,32 @@
+CompoundExpression
+  = left:ListOfSimpleExpressions "|" right:CompoundExpression { 
+      const value = right.type === 'or' ? [left, ...right.value] : [left, right]
+  	  return  { type: 'or', value}
+    }
+  / ListOfSimpleExpressions
+
+ListOfSimpleExpressions = value:SimpleExpression+ { 
+      return value.length === 1 ? value[0] : { type: 'word-list', value } 
+    }
+
+SimpleExpression
+  = _ negation:"!"? _ value:(SingleWord / SingleBracketedExpression) _ optional:"?"? _ {
+      if (!negation && !optional) return value;
+    
+      return { 
+        type: 'expression',
+        value, 
+        negation: !!negation, 
+        optional: !!optional 
+      } 
+    }
+
+SingleBracketedExpression 
+  = _ "(" _ value: CompoundExpression _ ")" _ { return value }
+
+SingleWord "word"
+  = _ value:[a-zA-Z0-9_]+ _ { 
+      return {type: 'word', value: value.join("") }
+    }
+
+_ "whitespace" = [ \t\n\r]*
