@@ -1,7 +1,7 @@
 {
   "name": "howto-cli",
-  "version": "0.1.4",
-  "description": "The terminal inline help tool you've been waiting for so long",
+  "version": "0.1.6",
+  "description": "Your personal command line assistant",
   "keywords": [
     "terminal",
     "help",
