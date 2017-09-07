@@ -2,7 +2,7 @@
 
 Despite years of experience I have problem to remember all the Unix black magic. I use `git` on daily basis and still strugle with more advanced commands. Introducing `docker` made my experience with terminal even worse.
 
-`howto-cli` comes to the rescue. Ask a question directly in your terminal and get an answer immediately.
+`howto-cli` comes to the rescue. Ask a technical question directly in your terminal and get an answer immediately.
 
 ![howto-cli demo](https://raw.githubusercontent.com/ziolko/howto-cli/master/docs/animation.gif)
 
@@ -16,12 +16,14 @@ You should now have access to the command `howto`. For the start try a few simpl
 - `howto list active processes`
 
 # Current status
-This project is currently on the proof-of-concept phase. Supported 
+This project is currently in the proof-of-concept phase. Set of supported commands is very limited but will be extended as needed. Feel free to suggest questions that should be covered by this tool. Pull requests will be highly welcomed. 
+
+Starring this repository will give me a strong incentive to work further :wink:
 
 # Analytics
-To get as much feedback as possible every question you ask is anonymously sent to my server. This is needed to analyse what questions the knowledge base fails to answer.
+At the current stage usage statistics are crucial. That's why every time this tool is used your question is anonymously sent to the backend server. Based on the questions asked the knowledge base will be improved.
 
-Without anonymous usage analytics I am unable to improve the product. If you are concerned about privacy let me know in [this issue](https://github.com/ziolko/howto-cli/issues/1).
+Without anonymous usage analytics I am unable to improve the tool. If you are concerned about privacy let me know in [this issue](https://github.com/ziolko/howto-cli/issues/1).
 
 # License 
 [MPL-2.0](https://opensource.org/licenses/MPL-2.0)
