@@ -1,40 +1,53 @@
 #!/usr/bin/env node
-const axios = require('axios')
+
+const childProcess = require('child_process')
+const figures = require('figures')
 const chalk = require('chalk')
-const semver = require('semver')
-const knowledgeBase = require('./knowledge-base')
 const nlp = require('compromise')
+const meow = require('meow')
 
-const arg = process.argv.slice(2).join(' ')
+const knowledgeBase = require('./knowledge-base')
+const checkNewVersion = require('./utils/version')
 
-sendStatistics(arg)
+const cli = meow(chalk`
+Usage
+  $ howto <question>
+  $ howto <command-name>
 
-const question = nlp(arg)
-question.match('#Determiner').delete()
-const answer = knowledgeBase(question)
+Options
+  -h, --help  Show help message
 
-if (answer) {
-  console.log(chalk`{green [Success]} ${answer.name}: {gray ${answer.command}}`)
+Examples
+  {grey $} howto show active processes
+  {grey $} howto remove directory recursively
+  {grey $} howto git
+`)
+
+const arg = cli.input.join(' ').trim()
+
+if (!arg) {
+  console.log(cli.help)
 } else {
-  console.log(chalk`{yellow [Info]} Sorry, answer for this question has not been found`)
-  console.log(chalk`\n{yellow [Info]} This project has just started! Contribute at {blue https://github.com/ziolko/howto-cli}`)
+  childProcess.spawn(process.execPath, ['utils/analytics.js', arg], { detached: true, stdio: 'ignore' }).unref()
 
-  checkNewVersion()
-}
+  const question = nlp(arg)
+  question.match('#Determiner').delete()
 
-function sendStatistics () {
-  axios.post('https://us-central1-howto-cli.cloudfunctions.net/question', { question: arg })
-}
+  const command = knowledgeBase.command(question)
+  const answer = knowledgeBase.answer(question)
+  const fuzzyAnswer = knowledgeBase.fuzzy(question)
 
-function checkNewVersion () {
-  axios.get('https://api.npms.io/v2/package/howto-cli').then(response => {
-    if (response.status !== 200 || !response.data || !response.data.collected || !response.data.collected.metadata) {
-      return response
-    }
-
-    const manifest = require('./package.json')
-    if (semver.gt(response.data.collected.metadata.version, manifest.version)) {
-      console.log(chalk`{yellow [Info]} Newer version of {green howto-cli} available! Update with {gray npm i -g howto-cli}`)
-    }
-  }).then(null, console.debug)
+  if (command) {
+    console.log(chalk`{green ${figures.tick}} Showing all receipes for command {green ${question.out()}}\n`)
+    command.forEach(answer => console.log(chalk`{green ${figures.bullet}} ${answer.command} {gray - ${answer.name}}`))
+  } else if (answer.length > 0) {
+    answer.forEach(answer => console.log(chalk`{green ${figures.tick}} ${answer.command} {gray - ${answer.name}}`))
+  } else if (fuzzyAnswer.length > 0) {
+    console.log(fuzzyAnswer.length)
+    console.log(chalk`{red ${figures.cross}} No exact answer has been found. Find below the closest matches:`)
+    fuzzyAnswer.forEach(answer => console.log(chalk`{green ${figures.bullet}} ${answer.command} {gray - ${answer.name}}`))
+  } else {
+    console.log(chalk`{red ${figures.cross}} Answer for your question has not been found. Add it at {blue https://github.com/ziolko/howto-cli}`)
+    checkNewVersion()
+  }
 }
