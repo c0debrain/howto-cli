@@ -5,6 +5,7 @@ const figures = require('figures')
 const chalk = require('chalk')
 const nlp = require('compromise')
 const meow = require('meow')
+const path = require('path')
 
 const knowledgeBase = require('./knowledge-base')
 const checkNewVersion = require('./utils/version')
@@ -21,6 +22,8 @@ Examples
   {grey $} howto show active processes
   {grey $} howto remove directory recursively
   {grey $} howto git
+
+v${require('./package.json').version}
 `)
 
 const arg = cli.input.join(' ').trim()
@@ -28,7 +31,7 @@ const arg = cli.input.join(' ').trim()
 if (!arg) {
   console.log(cli.help)
 } else {
-  childProcess.spawn(process.execPath, ['utils/analytics.js', arg], { detached: true, stdio: 'ignore' }).unref()
+  childProcess.spawn(process.execPath, [path.join(__dirname, 'utils/analytics.js'), arg], { detached: true, stdio: 'ignore' }).unref()
 
   const question = nlp(arg)
   question.match('#Determiner').delete()
