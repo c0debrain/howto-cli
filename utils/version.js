@@ -10,7 +10,7 @@ module.exports = function checkNewVersion () {
       return response
     }
 
-    const manifest = require('./package.json')
+    const manifest = require('../package.json')
     if (semver.gt(response.data.collected.metadata.version, manifest.version)) {
       console.log(chalk`{yellow ${figures.info}} Newer version of {green howto-cli} available! Update with {gray npm i -g howto-cli}`)
     }

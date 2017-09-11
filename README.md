@@ -1,4 +1,4 @@
-# Your personal command line assistant
+# Master your command line
 
 Despite years of experience I have problem to remember all the Unix black magic. I use `git` on daily basis and still strugle with more advanced commands. Introducing `docker` made my experience with terminal even worse.
 
