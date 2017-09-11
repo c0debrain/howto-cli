@@ -48,6 +48,7 @@ if (!arg) {
     fuzzyAnswer.forEach(answer => console.log(chalk`{green ${figures.bullet}} ${answer.command} {gray - ${answer.name}}`))
   } else {
     console.log(chalk`{red ${figures.cross}} Answer for your question has not been found. Add it at {blue https://github.com/ziolko/howto-cli}`)
+
     checkNewVersion()
   }
 }
