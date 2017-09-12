@@ -31,6 +31,21 @@ exports.intends = [
     command: 'git add .',
     patterns: 'git? test'
   },
+  {
+    name: 'commit all changes with comment',
+    command: 'git commit -am "<comment-message>"',
+    patterns: 'git? commit all? git? changes (in? git)?'
+  },
+  {
+    name: 'commit previously staged changes with comment',
+    command: 'git commit -m "<comment-message>"',
+    patterns: 'git? commit (previously? staged)? changes? (in? git)?'
+  },
+  {
+    name: 'change last commit (don\'t amend pushed commits!)',
+    command: 'git commit -am "<comment-message>" --amend',
+    patterns: 'git? (change|update|amend) git? last? git? commit (in? git)?'
+  },
   // Commit history - TODO
   // Branches & tags - TODO
   // Update & publish - TODO

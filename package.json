@@ -1,6 +1,6 @@
 {
   "name": "howto-cli",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Master your command line",
   "keywords": [
     "terminal",
@@ -15,7 +15,7 @@
     "howto": "./index.js"
   },
   "author": "Mateusz Zieliński <mateusz.mzielinski@gmail.com> (https://github.com/ziolko)",
-  "license": "MPL-2.0",
+  "license": "GPL-3.0",
   "homepage": "https://github.com/ziolko/howto-cli",
   "bugs": {
     "url": "https://github.com/ziolko/howto-cli"
