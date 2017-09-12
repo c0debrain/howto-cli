@@ -27,8 +27,8 @@ Examples
 
 v${require('./package.json').version}
 `, {
-  string: ['analytics']
-})
+    string: ['analytics']
+  })
 
 const arg = cli.input.join(' ').trim()
 
@@ -51,8 +51,11 @@ if (cli.flags.analytics) {
   const fuzzyAnswer = knowledgeBase.fuzzy(question)
 
   if (command) {
-    console.log(chalk`{green ${figures.tick}} Showing all receipes for command {green ${question.out()}}\n`)
-    command.forEach(answer => console.log(chalk`{green ${figures.bullet}} ${answer.command} {gray - ${answer.name}}`))
+    console.log(chalk`{green ${figures.tick}} Showing all receipes for command {green ${question.out()}}`)
+    command.forEach(answer => {
+      if (answer.section) console.log(chalk`\n{yellow ${answer.section}}`)
+      else console.log(chalk`{green ${figures.bullet}} ${answer.command} {gray - ${answer.name}}`)
+    })
   } else if (answer.length > 0) {
     answer.forEach(answer => console.log(chalk`{green ${figures.tick}} ${answer.command} {gray - ${answer.name}}`))
   } else if (fuzzyAnswer.length > 0) {

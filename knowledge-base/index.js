@@ -31,12 +31,13 @@ function findMatchingResponses (knowledgeBase, sentence) {
   for (const knowledge of knowledgeBase) {
     const intends = knowledge.intends || []
 
-    const response = intends.find(intend => {
+    const responses = intends.filter(intend => {
+      if (!intend.patterns) return false
       const patterns = Array.isArray(intend.patterns) ? intend.patterns : [intend.patterns]
       return patterns.find(pattern => sentenceTester(sentence, pattern))
     })
 
-    if (response) result.push(response)
+    result.push(...responses)
   }
   return result
 }
