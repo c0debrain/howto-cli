@@ -6,9 +6,11 @@ const chalk = require('chalk')
 const nlp = require('compromise')
 const meow = require('meow')
 const path = require('path')
+const Conf = require('conf')
 
 const knowledgeBase = require('./knowledge-base')
 const checkNewVersion = require('./utils/version')
+const config = new Conf()
 
 const cli = meow(chalk`
 Usage
@@ -24,14 +26,22 @@ Examples
   {grey $} howto git
 
 v${require('./package.json').version}
-`)
+`, {
+  string: ['analytics']
+})
 
 const arg = cli.input.join(' ').trim()
 
-if (!arg) {
+if (cli.flags.analytics) {
+  const isEnabled = cli.flags.analytics === 'true'
+  config.set('analytics', isEnabled)
+  console.log(chalk`{green ${figures.tick}} Analytics has been ${isEnabled ? 'enabled' : 'disabled'}`)
+} else if (!arg || arg === 'help') {
   console.log(cli.help)
 } else {
-  childProcess.spawn(process.execPath, [path.join(__dirname, 'utils/analytics.js'), arg], { detached: true, stdio: 'ignore' }).unref()
+  if (config.get('analytics', true)) {
+    childProcess.spawn(process.execPath, [path.join(__dirname, 'utils/analytics.js'), arg], { detached: true, stdio: 'ignore' }).unref()
+  }
 
   const question = nlp(arg)
   question.match('#Determiner').delete()

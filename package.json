@@ -1,6 +1,6 @@
 {
   "name": "howto-cli",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Master your command line",
   "keywords": [
     "terminal",
@@ -24,6 +24,7 @@
     "axios": "^0.16.2",
     "chalk": "^2.1.0",
     "compromise": "^10.7.2",
+    "conf": "^1.2.0",
     "figures": "^2.0.0",
     "fuse.js": "^3.1.0",
     "meow": "^3.7.0",
