@@ -11,12 +11,12 @@ Despite years of experience I have problem to remember all the Unix black magic.
 `npm i -g howto-cli`
 
 You should now have access to the command `howto`. For the start try a few simple questions:
-- `howto create a file`
-- `howto clone git repo`
-- `howto list active processes`
+- `howto reset changes`
+- `howto branch` (shows all commands with word `branch`)
+- `howto git` (shows all `git` commands)
 
 # Current status
-This project is currently in the proof-of-concept phase. Set of supported commands is very limited but will be extended as needed. Feel free to suggest questions that should be covered by this tool. Pull requests will be highly welcomed. 
+This project is currently in the proof-of-concept phase. I focus on `git` to check if I am able to cover useful basic and mid-level commands. Feel free to suggest questions that should be covered by this tool.
 
 Starring project [github repository](https://github.com/ziolko/howto-cli) will give me a strong incentive to work further :wink:
 
@@ -25,5 +25,17 @@ At the current stage usage statistics are crucial. That's why every time this to
 
 Without anonymous usage analytics I am unable to improve the tool. If you are concerned about privacy let me know in [this issue](https://github.com/ziolko/howto-cli/issues/1).
 
+# Credits
+NodeJS packages used in this project:
+* axios
+* chalk
+* compromise
+* conf
+* figures
+* fuse.js
+* meow
+* pegjs
+* semver
+
 # License 
-[MPL-2.0](https://opensource.org/licenses/MPL-2.0)
+[GPL-3.0](https://opensource.org/licenses/GPL-3.0)
