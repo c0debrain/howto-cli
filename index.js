@@ -59,7 +59,6 @@ if (cli.flags.analytics) {
   } else if (answer.length > 0) {
     answer.forEach(answer => console.log(chalk`{green ${figures.tick}} ${answer.command} {gray - ${answer.name}}`))
   } else if (fuzzyAnswer.length > 0) {
-    console.log(fuzzyAnswer.length)
     console.log(chalk`{red ${figures.cross}} No exact answer has been found. Find below the closest matches:`)
     fuzzyAnswer.forEach(answer => console.log(chalk`{green ${figures.bullet}} ${answer.command} {gray - ${answer.name}}`))
   } else {
